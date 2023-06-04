@@ -69,8 +69,9 @@ fn_loadconfig_dayz(){
 	defaultservername=$(grep -rwi ${HOME}/serverfiles/serverDZ.cfg -e 'EXAMPLE NAME')
 	if [ "${defaultservername}" != "" ]; then
 		printf "[ ${magenta}SERVER${default} ] Servername is set on default! 'EXAMPLE NAME'\n\n"
-		read -p "Enter a new Servername: " servername
-		sed -i "/hostname/ s/EXAMPLE NAME/${servername}/" "${HOME}/serverfiles/serverDZ.cfg"
+		#read -p "Enter a new Servername: " servername
+		#sed -i "/hostname/ s/EXAMPLE NAME/${servername}/" "${HOME}/serverfiles/serverDZ.cfg"
+		sed -i "/hostname/ s/EXAMPLE NAME/teste/" "${HOME}/serverfiles/serverDZ.cfg"
 	fi
 	# battleye config and rconpassword setup
 	if [ ! -f "${HOME}/serverfiles/battleye/beserver_x64.cfg" ]; then
@@ -188,9 +189,10 @@ fn_steamlogin_dayz(){
 	source ${HOME}/.steamlogin
 	if [ "${steamlogin}" == "" ]; then
 		printf "\n[ ${magenta}STEAM${default} ] "
-		read -p "Please type in your Steamlogin (username): " steamname
+		#read -p "Please type in your Steamlogin (username): " steamname
 		sleep 0.5
-		sed -i "/steamlogin/ s/=/=$steamname/" ${HOME}/.steamlogin
+		#sed -i "/steamlogin/ s/=/=$steamname/" ${HOME}/.steamlogin
+		sed -i "/steamlogin/ s/=/=anonymous/" ${HOME}/.steamlogin
 		sleep 0.5
 		source ${HOME}/.steamlogin
 	fi
