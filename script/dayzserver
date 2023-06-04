@@ -27,14 +27,6 @@ if [ "${ansi}" != "off" ]; then
         creeol="\r\033[K"
 fi
 
-fn_checkroot_dayz(){
-	if [ "$(whoami)" == "root" ]; then
-	  printf "[ ${red}FAIL${default} ] ${yellow}Do NOT run this script as root!\n"
-	  printf "\tSwitch to the dayz user!${default}\n"
-	  exit 1
-	fi
-}
-
 fn_checktmux(){
 	if [ -n "${TMUX}" ]; then
 		printf "[ ${red}FAIL${default} ] The Script creates a tmux session when starting the server.\n"
