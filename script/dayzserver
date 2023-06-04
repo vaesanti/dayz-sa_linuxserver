@@ -444,7 +444,6 @@ fn_opt_usage(){
 }
 
 # start functions
-fn_checkroot_dayz
 fn_checktmux
 fn_checkscreen
 
