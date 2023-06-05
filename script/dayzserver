@@ -54,7 +54,7 @@ fn_checkscreen(){
 fn_loadconfig_dayz(){
 	# default config
 	if [ ! -f "${HOME}/.default.cfg" ]; then
-		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/.default.cfg
+		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/.default.cfg
 	fi
 	source ${HOME}/.default.cfg
 	# script config
@@ -64,7 +64,7 @@ fn_loadconfig_dayz(){
 	source ${HOME}/.dayzserver.cfg
 	# hostname/servername
 	if [ ! -f "${HOME}/serverfiles/serverDZ.cfg" ]; then
-		wget -P ${HOME}/serverfiles/ -q https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/serverDZ.cfg
+		wget -P ${HOME}/serverfiles/ -q https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/serverDZ.cfg
 	fi
 	defaultservername=$(grep -rwi ${HOME}/serverfiles/serverDZ.cfg -e 'EXAMPLE NAME')
 	if [ "${defaultservername}" != "" ]; then
@@ -74,7 +74,7 @@ fn_loadconfig_dayz(){
 	fi
 	# battleye config and rconpassword setup
 	if [ ! -f "${HOME}/serverfiles/battleye/beserver_x64.cfg" ]; then
-		wget -P ${HOME}/serverfiles/battleye/ -qN https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/beserver_x64.cfg
+		wget -P ${HOME}/serverfiles/battleye/ -qN https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/beserver_x64.cfg
 		passwd=$(openssl rand -base64 8 | tr -dc 'A-Za-z0-9')
 		if [ "${passwd}" == "" ]; then
 			passwd=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c10)
@@ -91,7 +91,7 @@ fn_loadconfig_dayz(){
 	fi
 	# workshop
 	if [ ! -f "${HOME}/.workshop.cfg" ]; then
-		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/.workshop.cfg
+		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/.workshop.cfg
 	fi
 }
 
@@ -183,7 +183,7 @@ fn_console_dayz(){
 
 fn_steamlogin_dayz(){
 	if [ ! -f "${HOME}/.steamlogin" ]; then
-		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/.steamlogin
+		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/.steamlogin
 	fi
 	source ${HOME}/.steamlogin
 	if [ "${steamlogin}" == "" ]; then
@@ -309,7 +309,7 @@ fn_workshop_mods(){
 	workshopfolder="${HOME}/serverfiles/steamapps/workshop/content/221100"
 	workshoplist=""
 	if [ ! -f "${HOME}/.workshop.cfg" ]; then
-		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/.workshop.cfg
+		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/.workshop.cfg
 	fi
 	mapfile -t -s 4 workshopID < "${HOME}/.workshop.cfg"
 	# gather mods
@@ -379,9 +379,9 @@ fn_wipe_dayz(){
 }
 
 fn_updatescript_dayz(){
-	checkversion=$(curl -s https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/version)
+	checkversion=$(curl -s https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/version)
 	if [ ${checkversion} -gt ${version} ]; then
-		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/thelastnoc/dayz-sa_linuxserver/master/script/dayzserver --show-progress
+		wget -P ${HOME}/ -qN https://raw.githubusercontent.com/vaesanti/dayz-sa_linuxserver/master/script/dayzserver --show-progress
 		chmod u+x dayzserver
 	else
 		printf "No update\n"
